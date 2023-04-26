@@ -1,0 +1,23 @@
+:host {
+  --fz-p: 1.6rem;
+  --bg-color: #48484a;
+  --text-color: #f2f2f2;
+}
+p {
+  font-size: var(--fz-p);
+}
+.nav-container {
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+}
+.nav-link:link,
+.nav-link:visited {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 2rem;
+  padding-right: 2rem;
+}
+.nav-link:hover,
+.nav-link:active {
+  color: #fff;
+}

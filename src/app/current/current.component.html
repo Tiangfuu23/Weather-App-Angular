@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>{{ myWeather.cityName }}</h1>
+  <h2>{{ myWeather.temp }}&deg;</h2>
+  <div class="img">
+    <img
+      src="https://openweathermap.org/img/wn/{{ myWeather.icon }}@2x.png"
+      alt="State of Weather"
+    />
+  </div>
+  <h3>{{ myWeather.weatherKind }}</h3>
+  <h4>{{ myWeather.tempMax }}&deg;</h4>
+  <h4>{{ myWeather.tempMin }}&deg;</h4>
+</div>
+<form>
+  <input type="text" placeholder="Name of a city" />
+  <button name="button">go</button>
+</form>
