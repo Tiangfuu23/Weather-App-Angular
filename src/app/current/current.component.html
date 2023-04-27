@@ -11,7 +11,13 @@
   <h4>{{ myWeather.tempMax }}&deg;</h4>
   <h4>{{ myWeather.tempMin }}&deg;</h4>
 </div>
-<form>
-  <input type="text" placeholder="Name of a city" />
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <input
+    type="text"
+    ngModel
+    name="city"
+    placeholder="Name of a city"
+    required
+  />
   <button name="button">go</button>
 </form>
