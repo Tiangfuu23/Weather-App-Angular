@@ -12,6 +12,7 @@ import { CurrentComponent } from './current/current.component';
 // Import Service
 import { WeatherService } from './services/weather.service';
 import { ToolBoxService } from './services/tool-box.service';
+import { ForecastingService } from './services/forecasting.service';
 
 const AppRoute: Routes = [
   {
@@ -38,7 +39,7 @@ const AppRoute: Routes = [
     FormsModule,
     RouterModule.forRoot(AppRoute),
   ],
-  providers: [WeatherService, ToolBoxService],
+  providers: [WeatherService, ForecastingService, ToolBoxService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

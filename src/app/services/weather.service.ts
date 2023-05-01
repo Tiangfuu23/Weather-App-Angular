@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { WeatherInfor } from '../interfaces/weather-infor';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, Subscription } from 'rxjs';
 import { ToolBoxService } from './tool-box.service';
 @Injectable({
   providedIn: 'root',
 })
-export class WeatherService {
+export class WeatherService implements OnDestroy {
   currentWeather: WeatherInfor = {
     cityName: '',
     temp: '',
@@ -15,15 +15,19 @@ export class WeatherService {
     tempMax: '',
     tempMin: '',
   };
-  location: any;
+  subscription?: Subscription;
+  // location: any;
   constructor(private http: HttpClient, private toolBox: ToolBoxService) {}
+  unSub(): void {
+    this.subscription?.unsubscribe();
+  }
   getJSON(url: string): any {
     return this.http.get(url);
   }
   getLocalWeather(cityName: string): WeatherInfor {
     cityName = this.toolBox.validateCityName(cityName);
-
-    this.getJSON(
+    this.unSub();
+    this.subscription = this.getJSON(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=cb3036dd596de35d22e9e919b543f358&units=metric
     `
     ).subscribe((data: any) => {
@@ -37,16 +41,19 @@ export class WeatherService {
     });
     return this.currentWeather;
   }
-  getCurrentWeather(): WeatherInfor {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      console.log(pos.coords);
-      this.getJSON(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&=&appid=cb3036dd596de35d22e9e919b543f358`
-      ).subscribe((data: any) => {
-        console.log(data[0].name);
-        this.getLocalWeather(data[0].name);
-      });
-    });
-    return this.currentWeather;
+  // getCurrentWeather(): WeatherInfor {
+  //   navigator.geolocation.getCurrentPosition((pos) => {
+  //     // console.log(pos.coords);
+  //     this.getJSON(
+  //       `http://api.openweathermap.org/geo/1.0/reverse?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&=&appid=cb3036dd596de35d22e9e919b543f358`
+  //     ).subscribe((data: any) => {
+  //       // console.log(data[0].name);
+  //       this.getLocalWeather(data[0].name);
+  //     });
+  //   });
+  //   return this.currentWeather;
+  // }
+  ngOnDestroy(): void {
+    this.unSub();
   }
 }

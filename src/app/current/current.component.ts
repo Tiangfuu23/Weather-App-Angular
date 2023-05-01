@@ -8,19 +8,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./current.component.scss'],
 })
 export class CurrentComponent implements OnInit {
-  myWeather: WeatherInfor = {
-    cityName: '',
-    temp: '',
-    icon: '',
-    weatherKind: '',
-    tempMax: '',
-    tempMin: '',
-  };
-
+  myWeather: WeatherInfor = {};
+  myWeatherArr: WeatherInfor[] = [];
   constructor(private ws: WeatherService) {}
   ngOnInit() {
-    this.myWeather = this.ws.getCurrentWeather();
-    console.log(this.myWeather);
+    // this.myWeatherArr.push(this.ws.getCurrentWeather());
+    this.myWeatherArr.push(this.ws.getLocalWeather('Ho Chi Minh'));
+    console.log('this.myWeatherArr:', this.myWeatherArr);
+    this.myWeatherArr.push(this.ws.getLocalWeather('Can Tho'));
+    console.log('this.myWeatherArr:', this.myWeatherArr);
+    this.myWeatherArr.push(this.ws.getLocalWeather('Ha Noi'));
+    console.log(`this.myWeatherArr:`, this.myWeatherArr);
   }
   onSubmit(weather: NgForm) {
     console.log(`Form:`, weather);
