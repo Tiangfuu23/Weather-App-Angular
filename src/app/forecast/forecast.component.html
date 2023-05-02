@@ -2,7 +2,13 @@
   <input type="text" ngModel name="cityName" />
   <button>Go</button>
 </form> -->
-<div class="container">
+<div tabindex="0" class="container" (keydown.esc)="navigateToCurrent()">
+  <button class="btn" (click)="navigateToCurrent()">
+    <ion-icon
+      class="icon icon-back"
+      name="arrow-back-circle-outline"
+    ></ion-icon>
+  </button>
   <h1>{{ cityName }}</h1>
   <!-- DAY -->
   <div class="day-container">

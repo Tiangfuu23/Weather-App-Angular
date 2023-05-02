@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class ShareCityNameService {
   constructor() {}
   // subj = new Subject<any>();
-  subj = new BehaviorSubject<any>('');
+  subj = new BehaviorSubject<any>('Ha Noi');
   sentCityName(cityName: any): void {
     this.subj.next(cityName);
   }

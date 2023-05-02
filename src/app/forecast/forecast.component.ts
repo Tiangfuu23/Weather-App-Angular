@@ -4,6 +4,7 @@ import { WeatherForecastingInfor } from '../interfaces/weather-forecasting-infor
 import { ForecastingService } from '../services/forecasting.service';
 import { ShareCityNameService } from '../services/share-city-name.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
@@ -11,11 +12,12 @@ import { Subscription } from 'rxjs';
 })
 export class ForecastComponent implements OnInit, OnDestroy {
   sub?: Subscription;
-  cityName: string = 'New York';
+  cityName: string = 'Ha Noi';
   fiveDaysForecasting: WeatherForecastingInfor[] = [];
   constructor(
     private fs: ForecastingService,
-    private shareCityName: ShareCityNameService
+    private shareCityName: ShareCityNameService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.sub = this.shareCityName.subj.subscribe((val: any) => {
@@ -25,11 +27,16 @@ export class ForecastComponent implements OnInit, OnDestroy {
     console.log(`City Name in Forecast : ${this.cityName}`);
     this.getFiveDaysForecast();
   }
-
   // Get 5-days forecasting
   getFiveDaysForecast(): void {
     this.fiveDaysForecasting = this.fs.getForecastingWeatherArr(this.cityName);
     console.log(this.fiveDaysForecasting);
+  }
+  // navigate back to main page
+  navigateToCurrent(): void {
+    // console.log(`navigate to current`);
+    // console.log(e);
+    this.router.navigate([``]);
   }
   // Handle Form
   // onSubmit(form: NgForm) {

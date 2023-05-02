@@ -12,7 +12,20 @@ FONT SIZE SYSTEM (px)
   align-items: center;
   color: #06283d;
 }
+button {
+  border: none;
+  border-radius: 50%;
+  background-color: inherit;
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+}
+button:hover {
+  transform: scale(1.1);
+}
 .container {
+  position: relative;
   background-color: #fff;
   width: max-content;
   text-align: center;
