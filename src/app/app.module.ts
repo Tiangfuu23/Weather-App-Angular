@@ -16,6 +16,7 @@ import { ForecastingService } from './services/forecasting.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ShareCityNameService } from './services/share-city-name.service';
 const AppRoute: Routes = [
   {
     path: '',
@@ -42,7 +43,12 @@ const AppRoute: Routes = [
     RouterModule.forRoot(AppRoute),
     FontAwesomeModule,
   ],
-  providers: [WeatherService, ForecastingService, ToolBoxService],
+  providers: [
+    WeatherService,
+    ForecastingService,
+    ToolBoxService,
+    ShareCityNameService,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

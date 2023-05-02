@@ -12,6 +12,7 @@ export class WeatherService implements OnDestroy {
   subscription?: Subscription;
   constructor(private http: HttpClient, private toolBox: ToolBoxService) {}
   unSub(): void {
+    console.log(`unsubscribe`);
     this.subscription?.unsubscribe();
   }
   getJSON(url: string): any {
@@ -21,11 +22,10 @@ export class WeatherService implements OnDestroy {
     const temp: WeatherInfor = {};
     cityName = this.toolBox.validateCityName(cityName);
     this.subscription = this.getJSON(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=cb3036dd596de35d22e9e919b543f358&units=metric
-    `
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=cb3036dd596de35d22e9e919b543f358&units=metric`
     ).subscribe(
       (data: any) => {
-        console.log(data);
+        // console.log(data);
         temp.cityName = data.name;
         temp.temp = data.main.temp;
         temp.icon = data.weather[0].icon;
@@ -35,11 +35,11 @@ export class WeatherService implements OnDestroy {
         temp.found = true;
       },
       (err: HttpErrorResponse) => {
-        console.log(err);
+        // console.log(err);
         temp.found = false;
       }
     );
-    console.log(temp);
+    // console.log(temp);
     return temp;
   }
   // getCurrentWeather(): WeatherInfor {

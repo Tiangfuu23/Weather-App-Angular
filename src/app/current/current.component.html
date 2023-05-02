@@ -17,7 +17,7 @@
       <div
         class="weather-box"
         *ngIf="myWeather.found"
-        (click)="navigateToForecasting()"
+        (click)="navigateToForecasting(myWeather.cityName)"
       >
         <h1 class="city-name margin-top-up">{{ myWeather.cityName }}</h1>
         <img
