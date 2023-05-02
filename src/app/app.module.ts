@@ -13,7 +13,9 @@ import { CurrentComponent } from './current/current.component';
 import { WeatherService } from './services/weather.service';
 import { ToolBoxService } from './services/tool-box.service';
 import { ForecastingService } from './services/forecasting.service';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 const AppRoute: Routes = [
   {
     path: '',
@@ -38,8 +40,10 @@ const AppRoute: Routes = [
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(AppRoute),
+    FontAwesomeModule,
   ],
   providers: [WeatherService, ForecastingService, ToolBoxService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

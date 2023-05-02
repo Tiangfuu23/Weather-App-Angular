@@ -1,3 +1,132 @@
+/*
+SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
+:host {
+  --bg-weather-box: #fff;
+  height: 100vh;
+  background-color: #06283d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.margin-top-up {
+  margin-top: -1.5rem;
+}
+.container {
+  text-align: center;
+  height: max-content;
+  width: max-content;
+  background-color: var(--bg-weather-box);
+  border-radius: 1.8rem;
+  padding: 1.2rem;
+  position: relative;
+}
+.searching-bar {
+  width: 100%;
+  height: min-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.searching-bar input {
+  transform: translateX(2.5rem);
+  border: none;
+  color: #06283d;
+  width: 75%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.searching-bar input::placeholder {
+  text-transform: capitalize;
+}
 input.ng-touched.ng-invalid {
-  border: red 1px solid;
+  border: rgb(220, 24, 24) 1px solid;
+}
+
+.searching-bar button {
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #dff6ff;
+  color: #06283d;
+  transition: all 0.2s cubic-bezier(0, 0.74, 0.58, 0.79);
+}
+.searching-bar button:hover {
+  background-color: #06283d;
+  color: #fff;
+}
+.icon-find {
+  font-size: 1.6rem;
+}
+.icon-location {
+  position: absolute;
+}
+.weather-container {
+  padding-top: 3rem;
+  max-width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 50%;
+  gap: 1rem;
+}
+.weather-container img {
+  width: 60%;
+}
+.weather-box {
+  width: 17.5rem;
+}
+.weather-box .city-name {
+  color: #06283d;
+  font-size: 1.2rem;
+}
+.weather-box .temperature {
+  color: #06283d;
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+.weather-box .description {
+  color: #06283d;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.weather-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+.weather-details .humidity,
+.weather-details .wind-speed {
+  font-size: 1rem;
+  color: #06283d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.weather-details .humidity p,
+.weather-details .wind-speed p {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+/**** NOT FOUND ******/
+.not-found {
+  color: #06283d;
+  text-align: center;
+  font-weight: 500;
+}
+.not-found p {
+  font-size: 1.2rem;
+}
+/***** 5-Days forecasting ******/
+.weather-box:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }

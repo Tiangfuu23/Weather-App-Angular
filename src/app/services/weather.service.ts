@@ -1,22 +1,15 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { WeatherInfor } from '../interfaces/weather-infor';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map, Subscription } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, map, Subscription, catchError } from 'rxjs';
 import { ToolBoxService } from './tool-box.service';
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService implements OnDestroy {
-  currentWeather: WeatherInfor = {
-    cityName: '',
-    temp: '',
-    icon: '',
-    weatherKind: '',
-    tempMax: '',
-    tempMin: '',
-  };
-  subscription?: Subscription;
+  // currentWeather: WeatherInfor = {};
   // location: any;
+  subscription?: Subscription;
   constructor(private http: HttpClient, private toolBox: ToolBoxService) {}
   unSub(): void {
     this.subscription?.unsubscribe();
@@ -25,21 +18,29 @@ export class WeatherService implements OnDestroy {
     return this.http.get(url);
   }
   getLocalWeather(cityName: string): WeatherInfor {
+    const temp: WeatherInfor = {};
     cityName = this.toolBox.validateCityName(cityName);
-    this.unSub();
     this.subscription = this.getJSON(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=cb3036dd596de35d22e9e919b543f358&units=metric
     `
-    ).subscribe((data: any) => {
-      console.log(data);
-      this.currentWeather.cityName = data.name;
-      this.currentWeather.temp = data.main.temp;
-      this.currentWeather.icon = data.weather[0].icon;
-      this.currentWeather.weatherKind = data.weather[0].description;
-      this.currentWeather.tempMax = data.main.temp_max;
-      this.currentWeather.tempMin = data.main.temp_min;
-    });
-    return this.currentWeather;
+    ).subscribe(
+      (data: any) => {
+        console.log(data);
+        temp.cityName = data.name;
+        temp.temp = data.main.temp;
+        temp.icon = data.weather[0].icon;
+        temp.weatherKind = data.weather[0].description;
+        temp.humidity = data.main.humidity;
+        temp.windSpeed = data.wind.speed;
+        temp.found = true;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        temp.found = false;
+      }
+    );
+    console.log(temp);
+    return temp;
   }
   // getCurrentWeather(): WeatherInfor {
   //   navigator.geolocation.getCurrentPosition((pos) => {

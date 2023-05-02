@@ -21,9 +21,9 @@ export class ForecastComponent implements OnInit {
     console.log(this.fiveDaysForecasting);
   }
   // Handle Form
-  onSubmit(form: NgForm) {
-    this.cityName = form.value.cityName;
-    console.log(`Forecasting city name: ${this.cityName}`);
-    this.getFiveDaysForecast();
-  }
+  // onSubmit(form: NgForm) {
+  //   this.cityName = form.value.cityName;
+  //   console.log(`Forecasting city name: ${this.cityName}`);
+  //   this.getFiveDaysForecast();
+  // }
 }

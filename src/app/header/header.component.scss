@@ -1,5 +1,5 @@
 :host {
-  --fz-p: 1.6rem;
+  --fz-p: 1.2rem;
   --bg-color: #48484a;
   --text-color: #f2f2f2;
 }
@@ -14,8 +14,8 @@ p {
 .nav-link:visited {
   text-decoration: none;
   color: var(--text-color);
-  font-size: 2rem;
-  padding-right: 2rem;
+  font-size: 1.6rem;
+  padding-right: 1.6rem;
 }
 .nav-link:hover,
 .nav-link:active {

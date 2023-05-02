@@ -7,8 +7,19 @@
   box-sizing: inherit;
   padding: 0;
   margin: 0;
+  transition: all 0.3s ease-out;
 }
-html {
+body {
   box-sizing: border-box;
   font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+  background-color: #06283d;
+}
+button,
+input {
+  font-family: inherit;
+}
+
+.icon {
+  font-size: 2.4rem;
 }

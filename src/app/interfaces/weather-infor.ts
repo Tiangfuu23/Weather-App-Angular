@@ -3,6 +3,7 @@ export interface WeatherInfor {
   temp?: string;
   icon?: string;
   weatherKind?: string;
-  tempMax?: string;
-  tempMin?: string;
+  humidity?: string;
+  windSpeed?: string;
+  found?: boolean;
 }

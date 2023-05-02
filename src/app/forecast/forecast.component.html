@@ -1,21 +1,32 @@
-<form (ngSubmit)="onSubmit(f)" ngForm #f="ngForm">
+<!-- <form (ngSubmit)="onSubmit(f)" ngForm #f="ngForm">
   <input type="text" ngModel name="cityName" />
   <button>Go</button>
-</form>
-<h1>City: {{ cityName }}</h1>
+</form> -->
 <div class="container">
+  <h1>{{ cityName }}</h1>
   <!-- DAY -->
-  <div class="day" *ngFor="let ele of fiveDaysForecasting">
-    <h2>Date: {{ ele.date | date : "EEE:  dd-MM-YYYY" }}</h2>
-    <div class="icon">
-      <img
-        src="https://openweathermap.org/img/wn/{{ ele.imgURL }}@2x.png"
-        alt="An image about state of weather"
-      />
+  <div class="day-container">
+    <div class="day-header">
+      <ion-icon name="calendar-outline" class="icon"></ion-icon>
+      <p>5-Days Forecasting</p>
     </div>
-    <div class="temp">
-      <h3>Min: {{ ele.tempMin }}&deg;</h3>
-      <h3>Max: {{ ele.tempMax }}&deg;</h3>
+    <div class="day-body">
+      <div class="day-box" *ngFor="let ele of fiveDaysForecasting">
+        <h2>
+          <ion-icon name="today-outline"></ion-icon>
+          {{ ele.date | date : "EEE:  dd-MM-YYYY" }}
+        </h2>
+        <div class="icon">
+          <img
+            src="https://openweathermap.org/img/wn/{{ ele.imgURL }}@2x.png"
+            alt="An image about state of weather"
+          />
+        </div>
+        <div class="temp">
+          <h3>Min: {{ ele.tempMin }}&deg;</h3>
+          <h3>Max: {{ ele.tempMax }}&deg;</h3>
+        </div>
+      </div>
     </div>
   </div>
 </div>
