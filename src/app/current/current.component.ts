@@ -11,9 +11,8 @@ import { SpinnerService } from '../services/ui/spinner.service';
   styleUrls: ['./current.component.scss'],
 })
 export class CurrentComponent implements OnInit {
-  // myWeather: WeatherInfor = {};
+  isRouting: boolean = false;
   myWeatherArr: WeatherInfor[] = [];
-  // defaultOn: boolean = true;
   constructor(
     private ws: WeatherService,
     private router: Router,
@@ -29,7 +28,6 @@ export class CurrentComponent implements OnInit {
     this.spinnerS.showSpinner = true;
   }
   onSubmit(weather: NgForm) {
-    // this.defaultOn = false;
     // console.log(`Form:`, weather);
     this.myWeatherArr = [];
     this.spinnerS.showSpinner = true;
@@ -37,10 +35,11 @@ export class CurrentComponent implements OnInit {
   }
   // Navigation
   navigateToForecasting(cityName: string | undefined): void {
-    // console.log(`City Name in Current ${cityName}`);
-    this.shareData.sentCityName(cityName);
-    this.router.navigate([`forecast`], {
-      skipLocationChange: true,
-    });
+    // UI-ANIMATION PURPOSE
+    this.isRouting = true;
+    setTimeout(() => {
+      this.router.navigate([`forecast`]);
+      this.shareData.sentCityName(cityName);
+    }, 500);
   }
 }

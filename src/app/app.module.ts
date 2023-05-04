@@ -22,7 +22,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { AnimateModule } from 'primeng/animate';
 const AppRoute: Routes = [
   {
     path: '',
@@ -52,6 +52,7 @@ const AppRoute: Routes = [
     ButtonModule,
     InputTextModule,
     ProgressSpinnerModule,
+    AnimateModule,
   ],
   providers: [
     WeatherService,

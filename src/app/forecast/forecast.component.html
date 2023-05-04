@@ -1,4 +1,9 @@
-<div tabindex="0" class="container" (keydown.esc)="navigateToCurrent()">
+<div
+  tabindex="0"
+  class="container animation-duration-500"
+  (keydown.esc)="navigateToCurrent()"
+  [ngClass]="{ fadeinright: !isRouting, fadeoutleft: isRouting }"
+>
   <button
     class="btn"
     (click)="navigateToCurrent()"
@@ -14,8 +19,8 @@
   <p-progressSpinner *ngIf="this.spinnerS.isLoading()"></p-progressSpinner>
 
   <!-- DAY -->
-  <div class="day-container">
-    <div class="day-header" *ngIf="!this.spinnerS.isLoading()">
+  <div class="day-container" *ngIf="!this.spinnerS.isLoading()">
+    <div class="day-header">
       <ion-icon name="calendar-outline" class="icon"></ion-icon>
       <p>5-Days Forecasting</p>
     </div>

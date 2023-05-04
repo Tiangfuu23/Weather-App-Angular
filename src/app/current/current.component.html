@@ -1,7 +1,10 @@
-<!-- TESTING PRIMENG -->
-<!-- <p-button label="Submit" styleClass="p-button-link"></p-button> -->
-<!--  -->
-<div class="container border-round h-max w-max">
+<div
+  class="container border-round h-max w-max animation-duration-500"
+  [ngClass]="{
+  'fadeinright': !isRouting,
+  'fadeoutleft': isRouting,
+}"
+>
   <form
     (ngSubmit)="onSubmit(f)"
     #f="ngForm"

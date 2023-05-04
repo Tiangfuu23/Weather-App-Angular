@@ -12,6 +12,7 @@ import { SpinnerService } from '../services/ui/spinner.service';
   styleUrls: ['./forecast.component.scss'],
 })
 export class ForecastComponent implements OnInit, OnDestroy {
+  isRouting: boolean = false;
   sub?: Subscription;
   cityName: string = 'Ha Noi';
   fiveDaysForecasting: WeatherForecastingInfor[] = [];
@@ -38,9 +39,12 @@ export class ForecastComponent implements OnInit, OnDestroy {
   // navigate back to main page
   navigateToCurrent(): void {
     // console.log(`navigate to current`);
-    // console.log(e);
-    this.router.navigate([``]);
+    this.isRouting = true;
+    setTimeout(() => {
+      this.router.navigate([``]);
+    }, 500);
   }
+
   // Handle Form
   // onSubmit(form: NgForm) {
   //   this.cityName = form.value.cityName;
