@@ -5,6 +5,7 @@ import { ForecastingService } from '../services/forecasting.service';
 import { ShareCityNameService } from '../services/share-city-name.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { SpinnerService } from '../services/ui/spinner.service';
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
@@ -17,9 +18,11 @@ export class ForecastComponent implements OnInit, OnDestroy {
   constructor(
     private fs: ForecastingService,
     private shareCityName: ShareCityNameService,
-    private router: Router
+    private router: Router,
+    public spinnerS: SpinnerService
   ) {}
   ngOnInit(): void {
+    this.spinnerS.showSpinner = true;
     this.sub = this.shareCityName.subj.subscribe((val: any) => {
       console.log(`data : ${val}, ${typeof val}`);
       this.cityName = val;
@@ -30,7 +33,7 @@ export class ForecastComponent implements OnInit, OnDestroy {
   // Get 5-days forecasting
   getFiveDaysForecast(): void {
     this.fiveDaysForecasting = this.fs.getForecastingWeatherArr(this.cityName);
-    console.log(this.fiveDaysForecasting);
+    // console.log(this.fiveDaysForecasting);
   }
   // navigate back to main page
   navigateToCurrent(): void {
@@ -44,6 +47,7 @@ export class ForecastComponent implements OnInit, OnDestroy {
   //   console.log(`Forecasting city name: ${this.cityName}`);
   //   this.getFiveDaysForecast();
   // }
+
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }

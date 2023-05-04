@@ -7,6 +7,8 @@ FONT SIZE SYSTEM (px)
 */
 :host {
   --bg-weather-box: #fff;
+  --border-radius: 1.8rem;
+  --primary-color: #06283d;
   height: 100vh;
   background-color: #06283d;
   display: flex;
@@ -18,113 +20,119 @@ FONT SIZE SYSTEM (px)
 }
 .container {
   text-align: center;
-  height: max-content;
-  width: max-content;
+  // height: max-content;
+  // width: max-content;
   background-color: var(--bg-weather-box);
-  border-radius: 1.8rem;
-  padding: 1.2rem;
+  // border-radius: 1.8rem;
+  padding: 1.6rem 1.2rem;
   position: relative;
 }
-.searching-bar {
-  width: 100%;
-  height: min-content;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.searching-bar input {
-  transform: translateX(2.5rem);
-  border: none;
-  color: #06283d;
-  width: 75%;
-  font-size: 1.2rem;
-  font-weight: 500;
+// .searching-bar {
+// width: 100%;
+// height: min-content;
+// display: flex;
+// justify-content: space-between;
+// align-items: center;
+// }
+// .searching-bar span {
+//   flex-grow: 1;
+// }
+.searching-bar span input {
+  // border: none;
+  // color: #06283d;
+  // width: 100%;
+  // font-size: 1.2rem;
+  // font-weight: 500;
   text-transform: uppercase;
 }
-.searching-bar input::placeholder {
+.searching-bar span,
+.searching-bar span input::placeholder {
   text-transform: capitalize;
+  font-size: 1.125rem;
 }
 input.ng-touched.ng-invalid {
   border: rgb(220, 24, 24) 1px solid;
 }
 
-.searching-bar button {
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #dff6ff;
-  color: #06283d;
-  transition: all 0.2s cubic-bezier(0, 0.74, 0.58, 0.79);
-}
-.searching-bar button:hover {
-  background-color: #06283d;
-  color: #fff;
-}
-.icon-find {
-  font-size: 1.6rem;
-}
-.icon-location {
-  position: absolute;
-}
+// .searching-bar p-button {
+// border: none;
+// cursor: pointer;
+// border-radius: 50%;
+// overflow: hidden;
+// background-color: #dff6ff;
+// color: #06283d;
+// transition: all 0.2s cubic-bezier(0, 0.74, 0.58, 0.79);
+// }
+// .searching-bar p-button:hover {
+//   background-color: #06283d;
+//   color: #fff;
+// }
+// .pi-search {
+//   font-size: 1.6rem;
+// }
+// .icon-location {
+// position: absolute;
+// font-size: 1.6rem;
+// }
 .weather-container {
   padding-top: 3rem;
-  max-width: 40rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 50%;
-  gap: 1rem;
+  // max-width: 40rem;
+  // display: flex;
+  // justify-content: space-between;
+  // justify-content: center;
+  // border-radius: 50%;
+  // gap: 1rem;
 }
-.weather-container img {
-  width: 60%;
-}
-.weather-box {
-  width: 17.5rem;
-}
-.weather-box .city-name {
-  color: #06283d;
-  font-size: 1.2rem;
-}
+// .weather-container img {
+//   width: 60%;
+// }
+// .weather-box {
+//   width: 17.5rem;
+// }
+// .weather-box .city-name {
+// color: #06283d;
+// font-size: 1.2rem;
+// }
 .weather-box .temperature {
-  color: #06283d;
-  font-size: 2.4rem;
-  font-weight: 800;
+  color: #000;
+  // font-size: 2.4rem;
+  // font-weight: 700;
 }
 .weather-box .description {
-  color: #06283d;
-  font-size: 1rem;
-  font-weight: 500;
+  // color: #06283d;
+  // font-size: 1rem;
+  // font-weight: 500;
   text-transform: capitalize;
 }
 .weather-details {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
+  // width: 100%;
+  // display: flex;
+  // justify-content: space-around;
   margin-top: 3rem;
 }
 .weather-details .humidity,
 .weather-details .wind-speed {
-  font-size: 1rem;
-  color: #06283d;
+  // font-size: 1rem;
+  // color: #06283d;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
 }
-.weather-details .humidity p,
-.weather-details .wind-speed p {
-  font-size: 0.8rem;
-  font-weight: 500;
-}
+// .weather-details .humidity p,
+// .weather-details .wind-speed p {
+// font-size: 0.8rem;
+// font-weight: 500;
+// }
 /**** NOT FOUND ******/
 .not-found {
-  color: #06283d;
+  // color: #06283d;
   text-align: center;
-  font-weight: 500;
+  // font-weight: 500;
 }
-.not-found p {
-  font-size: 1.2rem;
-}
+// .not-found p {
+//   font-size: 1.2rem;
+// }
 /***** 5-Days forecasting ******/
 .weather-box:hover {
   transform: scale(1.05);

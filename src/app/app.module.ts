@@ -14,9 +14,15 @@ import { WeatherService } from './services/weather.service';
 import { ToolBoxService } from './services/tool-box.service';
 import { ForecastingService } from './services/forecasting.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShareCityNameService } from './services/share-city-name.service';
+import { SpinnerService } from './services/ui/spinner.service';
 //
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ShareCityNameService } from './services/share-city-name.service';
+// NGPrime
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 const AppRoute: Routes = [
   {
     path: '',
@@ -42,12 +48,17 @@ const AppRoute: Routes = [
     FormsModule,
     RouterModule.forRoot(AppRoute),
     FontAwesomeModule,
+    // ngPrime
+    ButtonModule,
+    InputTextModule,
+    ProgressSpinnerModule,
   ],
   providers: [
     WeatherService,
     ForecastingService,
     ToolBoxService,
     ShareCityNameService,
+    SpinnerService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

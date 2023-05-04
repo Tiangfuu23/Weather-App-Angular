@@ -1,50 +1,80 @@
-<div class="container">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="searching-bar">
-    <ion-icon class="icon icon-location" name="location"></ion-icon>
-    <input
-      type="text"
-      ngModel
-      name="city"
-      placeholder="enter your location"
-      required
-    />
-    <button name="button">
-      <ion-icon class="icon icon-find" name="search-outline"></ion-icon>
-    </button>
+<!-- TESTING PRIMENG -->
+<!-- <p-button label="Submit" styleClass="p-button-link"></p-button> -->
+<!--  -->
+<div class="container border-round h-max w-max">
+  <form
+    (ngSubmit)="onSubmit(f)"
+    #f="ngForm"
+    class="searching-bar flex justify-content-between align-items-center w-12"
+  >
+    <ion-icon class="icon icon-location text-3xl" name="location"></ion-icon>
+    <span class="p-float-label flex-grow-1">
+      <input
+        id="city-name"
+        type="text"
+        pInputText
+        ngModel
+        name="city"
+        required
+        class="text-primary font-medium border-none w-12 text-xl"
+      />
+      <label for="city-name">Enter Your Location</label>
+    </span>
+    <p-button
+      (onClick)="onSubmit(f)"
+      icon="pi pi-search"
+      styleClass="p-button-lg                                        p-button-rounded
+                  p-button-text"
+    >
+    </p-button>
+    <!-- <button name="button"> -->
+    <!-- <ion-icon class="icon icon-find" name="search-outline"></ion-icon> -->
+    <!-- </button> -->
   </form>
-  <div class="weather-container">
+
+  <div class="weather-container flex justify-content-center gap-3">
     <div *ngFor="let myWeather of myWeatherArr">
+      <p-progressSpinner *ngIf="this.spinnerS.isLoading()"></p-progressSpinner>
       <div
-        class="weather-box"
-        *ngIf="myWeather.found"
+        class="weather-box w-18rem"
+        *ngIf="myWeather.found && !this.spinnerS.isLoading()"
         (click)="navigateToForecasting(myWeather.cityName)"
       >
-        <h1 class="city-name margin-top-up">{{ myWeather.cityName }}</h1>
+        <h1 class="city-name margin-top-up text-primary text-xl">
+          {{ myWeather.cityName }}
+        </h1>
         <img
           src="https://openweathermap.org/img/wn/{{ myWeather.icon }}@2x.png"
           alt="State of Weather"
-          class=""
+          class="w-6"
         />
-        <h2 class="temperature margin-top-up">{{ myWeather.temp }}&deg;</h2>
-        <h3 class="description">{{ myWeather.weatherKind }}</h3>
-        <div class="weather-details">
-          <div class="humidity">
+        <h2 class="temperature margin-top-up font-semibold text-5xl">
+          {{ myWeather.temp }}&deg;
+        </h2>
+        <h3 class="description text-primary font-medium text-base">
+          {{ myWeather.weatherKind }}
+        </h3>
+        <div class="weather-details flex justify-content-around">
+          <div class="humidity text-primary font-medium text-base">
             <h4>Humidity</h4>
-            <p>{{ myWeather.humidity }} &percnt;</p>
+            <p class="text-sm">{{ myWeather.humidity }} &percnt;</p>
           </div>
-          <div class="wind-speed">
+          <div class="wind-speed text-primary font-medium text-base">
             <h4>Wind Speed</h4>
-            <p>{{ myWeather.windSpeed }} Km/h</p>
+            <p class="text-sm">{{ myWeather.windSpeed }} Km/h</p>
           </div>
         </div>
       </div>
-      <div class="not-found" *ngIf="!myWeather.found">
+      <div
+        class="not-found"
+        *ngIf="!myWeather.found && !this.spinnerS.isLoading()"
+      >
         <img
           src="/assets/image/404.png"
-          alt="not-found image"
-          class="not-found-img"
+          alt="not-found image font-medium"
+          class="not-found-img w-8"
         />
-        <p>Invalid Location</p>
+        <p class="text-primary text-xl">Invalid Location</p>
       </div>
     </div>
   </div>

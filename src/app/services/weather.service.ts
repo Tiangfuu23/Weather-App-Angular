@@ -3,6 +3,7 @@ import { WeatherInfor } from '../interfaces/weather-infor';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, map, Subscription, catchError } from 'rxjs';
 import { ToolBoxService } from './tool-box.service';
+import { SpinnerService } from './ui/spinner.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +11,11 @@ export class WeatherService implements OnDestroy {
   // currentWeather: WeatherInfor = {};
   // location: any;
   subscription?: Subscription;
-  constructor(private http: HttpClient, private toolBox: ToolBoxService) {}
+  constructor(
+    private http: HttpClient,
+    private toolBox: ToolBoxService,
+    private spinnerS: SpinnerService
+  ) {}
   unSub(): void {
     console.log(`unsubscribe`);
     this.subscription?.unsubscribe();
@@ -33,10 +38,12 @@ export class WeatherService implements OnDestroy {
         temp.humidity = data.main.humidity;
         temp.windSpeed = data.wind.speed;
         temp.found = true;
+        this.spinnerS.showSpinner = false;
       },
       (err: HttpErrorResponse) => {
         // console.log(err);
         temp.found = false;
+        this.spinnerS.showSpinner = false;
       }
     );
     // console.log(temp);

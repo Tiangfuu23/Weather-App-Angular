@@ -4,12 +4,17 @@ import { WeatherService } from './weather.service';
 import { ToolBoxService } from './tool-box.service';
 import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { SpinnerService } from './ui/spinner.service';
 @Injectable({
   providedIn: 'root',
 })
 export class ForecastingService implements OnDestroy {
   subscription?: Subscription;
-  constructor(private ws: WeatherService, private tool: ToolBoxService) {}
+  constructor(
+    private ws: WeatherService,
+    private tool: ToolBoxService,
+    public spinnerS: SpinnerService
+  ) {}
   getForecastingWeatherArr(cityName: string): WeatherForecastingInfor[] {
     const fiveDaysForecasting: WeatherForecastingInfor[] = [];
     cityName = this.tool.validateCityName(cityName);
@@ -19,7 +24,7 @@ export class ForecastingService implements OnDestroy {
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=cb3036dd596de35d22e9e919b543f358&units=metric`
       )
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         for (let i = 0; i < data.list.length; i += 8) {
           const currentObj = data.list[i];
           fiveDaysForecasting.push({
@@ -29,6 +34,7 @@ export class ForecastingService implements OnDestroy {
             tempMin: currentObj.main.temp_min,
           });
           // console.log(fiveDaysForecasting.at(-1));
+          this.spinnerS.showSpinner = false;
         }
       });
     return fiveDaysForecasting;
